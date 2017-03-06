@@ -1,0 +1,69 @@
+﻿Crear una aplicació amb WindowsForms que gestioni una competició de ping-pong.
+
+Cal dissenyar la interfície gràfica amb els controls que creieu més adequats per a implementar totes les especificacions donades a continuació. Tingueu en compte a l'hora de fer el disseny de la GUI criteris d'usabilitat.
+
+
+
+L'aplicació permetrà gestionar jugadors i una lliga de ping-pong entre aquests, amb les següents característiques i funcionalitats:
+
+- A la lliga tots els jugadors juguen contra tots 1 partit.
+
+- Cada partit guanyat són 3 punts. En cas d'empat decideix el punt average global (punts a favor - punts en contra).
+
+- Durant el desenvolupament d'una lliga les opcions de gestió de jugadors estaran deshabilitades.
+
+
+
+Gestió de jugadors
+
+a) Afegir un jugador: per a cada jugador guardarem el nom i una fotografia.
+
+b) Eliminar un jugador.
+
+c) Modificar un jugador.
+
+
+Competició
+
+a) Iniciar una nova lliga: hi participaran tots els jugadors registrats.
+
+b) Cancel·lar una lliga en curs: s'eliminarpa tota la informació de la lliga.
+
+c) Jugar el proper partit: s'informarà del proper partit programat i es donarà opció per a introduir el resultat un cop jugat.
+
+
+
+Backend
+
+Per a emmagatzemar tota la informació usarem Firebase.
+
+Creau-vos una BBDD amb la següent estructura:
+
+Aquesta estructura és una proposta que pot ser modificada segons les necessitats funcionals de l'aplicació.
+Les claus ID i P seran claus generades pel Firebase.
+
+
+{
+  "Jugadors" : {
+    "ID1" : {
+      "Foto" : "ramon.jpg",
+      "Jugats" : 1,
+      "Nom" : "Ramon Casamajó",
+      "Punts" : 3
+    },
+    "ID2" : {
+      "Foto" : "toni.jpg",
+      "Jugats" : 1,
+      "Nom" : "Toni Cassueps",
+      "Punts" : 0
+    }
+  },
+  "Partits" : {
+    "P1" : {
+      "Jugador1" : "ID1",
+      "Jugador2" : "ID2",
+      "Punts1" : 11,
+      "Punts2" : 7
+    }
+  }
+}
