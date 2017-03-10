@@ -46,6 +46,7 @@
             this.btCrearUsuario.TabIndex = 0;
             this.btCrearUsuario.Text = "Crear Jugador";
             this.btCrearUsuario.UseVisualStyleBackColor = true;
+            this.btCrearUsuario.Click += new System.EventHandler(this.btCrearUsuario_Click);
             // 
             // btModificarUsuario
             // 
@@ -55,6 +56,7 @@
             this.btModificarUsuario.TabIndex = 1;
             this.btModificarUsuario.Text = "Modificar Jugador";
             this.btModificarUsuario.UseVisualStyleBackColor = true;
+            this.btModificarUsuario.Click += new System.EventHandler(this.btModificarUsuario_Click);
             // 
             // btEliminarUsuario
             // 
@@ -64,6 +66,7 @@
             this.btEliminarUsuario.TabIndex = 2;
             this.btEliminarUsuario.Text = "Eliminar Jugador";
             this.btEliminarUsuario.UseVisualStyleBackColor = true;
+            this.btEliminarUsuario.Click += new System.EventHandler(this.btEliminarUsuario_Click);
             // 
             // txtNombre
             // 
@@ -101,6 +104,7 @@
             // 
             this.listJugador.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listJugador.Location = new System.Drawing.Point(0, 128);
+            this.listJugador.MultiSelect = false;
             this.listJugador.Name = "listJugador";
             this.listJugador.Size = new System.Drawing.Size(548, 241);
             this.listJugador.TabIndex = 7;
@@ -121,6 +125,7 @@
             this.Controls.Add(this.btCrearUsuario);
             this.Name = "GestionJugador";
             this.Text = "Gestion de Jugador";
+            this.Load += new System.EventHandler(this.GestionJugador_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

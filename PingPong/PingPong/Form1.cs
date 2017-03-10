@@ -12,14 +12,22 @@ namespace PingPong
 {
     public partial class Form1 : Form
     {
+        List<Jugador> jugadores = null;
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btGestionUsuario_Click(object sender, EventArgs e)
         {
-            GestionJugador gu = new GestionJugador();
+            GestionJugador gu = new GestionJugador(jugadores);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //TODO buscar jugadores en el Firebase
+
         }
     }
 }
