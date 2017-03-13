@@ -13,6 +13,8 @@ namespace PingPong
     public partial class Form1 : Form
     {
         List<Jugador> jugadores = null;
+        Partido partActual;
+        Liga liga = null;
 
         public Form1()
         {
@@ -28,6 +30,30 @@ namespace PingPong
         {
             //TODO buscar jugadores en el Firebase
 
+        }
+
+        private void btIniciarCompe_Click(object sender, EventArgs e)
+        {
+            liga = new Liga();
+
+
+
+        }
+
+        private void btPlayMatch_Click(object sender, EventArgs e)
+        {
+            partActual = liga.getNextMatch();
+            if (partActual != null)
+            {
+                txtjugador1.Text = partActual.j1.nombre;
+                txtjugador2.Text = partActual.j2.nombre;
+            }
+
+        }
+
+        private void btGuardarMarcador_Click(object sender, EventArgs e)
+        {
+            partActual.setMarcador(int.Parse( txtResultadoj1.Text.Trim()), int.Parse(txtResultadoj2.Text.Trim()));
         }
     }
 }

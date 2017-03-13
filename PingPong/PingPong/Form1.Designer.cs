@@ -34,10 +34,12 @@
             this.btPlayMatch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtjugador1 = new System.Windows.Forms.TextBox();
+            this.txtjugador2 = new System.Windows.Forms.TextBox();
+            this.txtResultadoj1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btGuardarMarcador = new System.Windows.Forms.Button();
+            this.txtResultadoj2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btGestionUsuario
@@ -58,6 +60,7 @@
             this.btIniciarCompe.TabIndex = 1;
             this.btIniciarCompe.Text = "Iniciar competicion";
             this.btIniciarCompe.UseVisualStyleBackColor = true;
+            this.btIniciarCompe.Click += new System.EventHandler(this.btIniciarCompe_Click);
             // 
             // btCancelarLiga
             // 
@@ -76,11 +79,12 @@
             this.btPlayMatch.TabIndex = 3;
             this.btPlayMatch.Text = "Jugar el proper partit";
             this.btPlayMatch.UseVisualStyleBackColor = true;
+            this.btPlayMatch.Click += new System.EventHandler(this.btPlayMatch_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(395, 115);
+            this.label1.Location = new System.Drawing.Point(58, 94);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 4;
@@ -89,51 +93,70 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(547, 115);
+            this.label2.Location = new System.Drawing.Point(242, 94);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Jugador 2";
             // 
-            // textBox1
+            // txtjugador1
             // 
-            this.textBox1.Location = new System.Drawing.Point(349, 202);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 6;
+            this.txtjugador1.Location = new System.Drawing.Point(61, 115);
+            this.txtjugador1.Name = "txtjugador1";
+            this.txtjugador1.Size = new System.Drawing.Size(100, 20);
+            this.txtjugador1.TabIndex = 6;
             // 
-            // textBox2
+            // txtjugador2
             // 
-            this.textBox2.Location = new System.Drawing.Point(486, 202);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 7;
+            this.txtjugador2.Location = new System.Drawing.Point(232, 115);
+            this.txtjugador2.Name = "txtjugador2";
+            this.txtjugador2.Size = new System.Drawing.Size(100, 20);
+            this.txtjugador2.TabIndex = 7;
             // 
-            // textBox3
+            // txtResultadoj1
             // 
-            this.textBox3.Location = new System.Drawing.Point(719, 202);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 8;
+            this.txtResultadoj1.Location = new System.Drawing.Point(409, 115);
+            this.txtResultadoj1.Name = "txtResultadoj1";
+            this.txtResultadoj1.Size = new System.Drawing.Size(44, 20);
+            this.txtResultadoj1.TabIndex = 8;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(732, 114);
+            this.label3.Location = new System.Drawing.Point(441, 94);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 13);
             this.label3.TabIndex = 9;
             this.label3.Text = "Resultado";
+            // 
+            // btGuardarMarcador
+            // 
+            this.btGuardarMarcador.Location = new System.Drawing.Point(583, 112);
+            this.btGuardarMarcador.Name = "btGuardarMarcador";
+            this.btGuardarMarcador.Size = new System.Drawing.Size(117, 23);
+            this.btGuardarMarcador.TabIndex = 10;
+            this.btGuardarMarcador.Text = "Guardar Marcador";
+            this.btGuardarMarcador.UseVisualStyleBackColor = true;
+            this.btGuardarMarcador.Click += new System.EventHandler(this.btGuardarMarcador_Click);
+            // 
+            // txtResultadoj2
+            // 
+            this.txtResultadoj2.Location = new System.Drawing.Point(459, 115);
+            this.txtResultadoj2.Name = "txtResultadoj2";
+            this.txtResultadoj2.Size = new System.Drawing.Size(44, 20);
+            this.txtResultadoj2.TabIndex = 11;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1127, 617);
+            this.Controls.Add(this.txtResultadoj2);
+            this.Controls.Add(this.btGuardarMarcador);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtResultadoj1);
+            this.Controls.Add(this.txtjugador2);
+            this.Controls.Add(this.txtjugador1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btPlayMatch);
@@ -156,10 +179,12 @@
         private System.Windows.Forms.Button btPlayMatch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtjugador1;
+        private System.Windows.Forms.TextBox txtjugador2;
+        private System.Windows.Forms.TextBox txtResultadoj1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btGuardarMarcador;
+        private System.Windows.Forms.TextBox txtResultadoj2;
     }
 }
 

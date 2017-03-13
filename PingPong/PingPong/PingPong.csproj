@@ -59,6 +59,8 @@
       <DependentUpon>GestionUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Jugador.cs" />
+    <Compile Include="Liga.cs" />
+    <Compile Include="Partido.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

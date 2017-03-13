@@ -26,7 +26,7 @@ namespace PingPong
 
         public override string ToString()
         {
-            return "Jugador -> "+nombre;
+            return "Jugador -> "+nombre +"["+puntos+"]";
         }
     }
 }
