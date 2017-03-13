@@ -10,10 +10,13 @@ namespace PingPong
     class Liga
     {
         List<Jugador> jugadores { get; set; }
+
+
         int encuentros = 0;
 
-        Jugador[] local = new Jugador[totalPartidos];
-        Jugador[] visita = new Jugador[totalPartidos];
+        Partido partActual = null;
+        Jugador[] local = null;
+        Jugador[] visita =null;
 
         int auxT = 0;
         Boolean partidosImpares = false;
@@ -42,10 +45,7 @@ namespace PingPong
         }
 
 
-        public override string ToString()
-        {
-            return "Liga -> " + getJugadores();
-        }
+      
 
 
 
@@ -61,6 +61,9 @@ namespace PingPong
             }
 
             totalPartidos = (auxT * (auxT - 1)) / 2;//total de partidos de una ronda
+
+            local=new Jugador[totalPartidos];
+            visita = new Jugador[totalPartidos];
         }
 
         /// <summary> Crear calendario de partidos</summary>
@@ -144,11 +147,20 @@ namespace PingPong
             {
                 if (!part.getFinishGame())
                 {
-                    return part;
+                    partActual = part;
+                    return partActual;
                 }
             }
 
             return null;
+        }
+
+        /// <summary> Indicamo el valor del marcador del partido actual </summary>
+        /// <param name="uno"> marcador del </param>
+        /// <param name="dos"></param>
+        public void setMarcador(int uno,int dos)
+        {
+            partActual.setMarcador(uno, dos);
         }
 
         ///////////////////////////////////////////////////////

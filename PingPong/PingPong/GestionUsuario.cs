@@ -49,14 +49,34 @@ namespace PingPong
 
         private void btCrearUsuario_Click(object sender, EventArgs e)
         {
-
+            Jugador jug = null;
             if (!string.IsNullOrEmpty(txtNombre.Text) && !string.IsNullOrEmpty(txtPuntos.Text))
             {
-                jugadores.Add(new Jugador(txtNombre.Text, txtPuntos.Text));
+                if (jugadores != null)
+                {
+                    jug = new Jugador(txtNombre.Text, txtPuntos.Text);
+                    jugadores.Add(jug);
+                }
+                else
+                {
+                    jug = new Jugador(txtNombre.Text, txtPuntos.Text);
+                    jugadores = new List<Jugador>();
+                    jugadores.Add(jug);
+                }
             }
             else if (string.IsNullOrEmpty(txtPuntos.Text))
             {
-                jugadores.Add(new Jugador(txtNombre.Text,"0"));
+                if (jugadores != null)
+                {
+                    jug = new Jugador(txtNombre.Text, "0");
+                    jugadores.Add(jug);
+                }
+                else
+                {
+                    jug = new Jugador(txtNombre.Text, "0");
+                    jugadores = new List<Jugador>();
+                    jugadores.Add(jug);
+                }
             }
             else
             {
@@ -64,7 +84,7 @@ namespace PingPong
             }
 
             //TODO subir version al fireBase
-
+            listJugador.Items.Add(jug.ToString());
 
         }
 

@@ -24,6 +24,7 @@ namespace PingPong
         private void btGestionUsuario_Click(object sender, EventArgs e)
         {
             GestionJugador gu = new GestionJugador(jugadores);
+            gu.ShowDialog();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -48,12 +49,14 @@ namespace PingPong
                 txtjugador1.Text = partActual.j1.nombre;
                 txtjugador2.Text = partActual.j2.nombre;
             }
-
         }
-
+    
         private void btGuardarMarcador_Click(object sender, EventArgs e)
         {
-            partActual.setMarcador(int.Parse( txtResultadoj1.Text.Trim()), int.Parse(txtResultadoj2.Text.Trim()));
+            if (partActual != null)
+            {
+                liga.setMarcador(int.Parse(txtResultadoj1.Text.Trim()), int.Parse(txtResultadoj2.Text.Trim()));
+            }
         }
     }
 }

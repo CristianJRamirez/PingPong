@@ -109,6 +109,7 @@
             this.listJugador.Size = new System.Drawing.Size(548, 241);
             this.listJugador.TabIndex = 7;
             this.listJugador.UseCompatibleStateImageBehavior = false;
+            this.listJugador.View = System.Windows.Forms.View.List;
             // 
             // GestionJugador
             // 
