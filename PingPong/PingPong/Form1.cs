@@ -25,6 +25,13 @@ namespace PingPong
         {
             GestionJugador gu = new GestionJugador(jugadores);
             gu.ShowDialog();
+            jugadores= gu.jugadores;
+
+            foreach (Jugador j in jugadores)
+            {
+                listJugadores.Items.Add(j.ToString());
+            }
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)

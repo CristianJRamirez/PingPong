@@ -12,7 +12,7 @@ namespace PingPong
 {
     public partial class GestionJugador : Form
     {
-        List<Jugador> jugadores = null;
+        public List<Jugador> jugadores = null;
 
         public GestionJugador(List<Jugador> jugs)
         {
@@ -25,12 +25,10 @@ namespace PingPong
             //Cargar los datos del firebase
         }
 
-
         private void btModificarUsuario_Click(object sender, EventArgs e)
         {
             if (listJugador.SelectedItems.Count > 0)
             {
-                Jugador jug = (Jugador)listJugador.SelectedItems[0].Tag;
 
                 Jugador j= new Jugador(txtNombre.Text, txtPuntos.Text);
                 jugadores.Add(j);
@@ -40,8 +38,7 @@ namespace PingPong
                 //TODO subir version al fireBase
                 listJugador.Items.Add(j.ToString());
 
-                jugadores.Remove(jug);
-                listJugador.Items.Remove(listJugador.SelectedItems[0]);
+                borrarUsuario();
             }
 
             //TODO subir version al fireBase
@@ -95,14 +92,13 @@ namespace PingPong
         {
             if (listJugador.SelectedItems.Count > 0)
             {
-                Jugador jug = (Jugador)listJugador.SelectedItems[0].Tag;
-                jugadores.Remove(jug);
-
-                listJugador.Items.Remove(listJugador.SelectedItems[0]);
+                borrarUsuario();            
 
                 //TODO borrar del Firebase
             }
         }
+
+       
 
         private void listJugador_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
@@ -134,6 +130,18 @@ namespace PingPong
             activarBoton();
         }
 
+        private void listJugador_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listJugador.SelectedItems.Count <= 0)
+            {
+                btEliminarUsuario.Enabled = false;
+            }
+            else
+            {
+                btEliminarUsuario.Enabled = true;
+            }
+        }
+
         private void activarBoton()
         {
             if (string.IsNullOrEmpty(txtNombre.Text) && string.IsNullOrEmpty(txtPuntos.Text) && listJugador.SelectedItems.Count<=0)
@@ -147,16 +155,18 @@ namespace PingPong
 
         }
 
-        private void listJugador_SelectedIndexChanged(object sender, EventArgs e)
+        private void borrarUsuario()
         {
-            if (listJugador.SelectedItems.Count <= 0)
+            foreach (Jugador j in jugadores)
             {
-                btEliminarUsuario.Enabled = false;
-            }
-            else
-            {
-                btEliminarUsuario.Enabled = true;
+                if (listJugador.SelectedItems[0].Text == j.ToString())
+                {
+                    jugadores.Remove(j);
+                    listJugador.Items.Remove(listJugador.SelectedItems[0]);
+                    return;
+                }
             }
         }
+
     }
 }

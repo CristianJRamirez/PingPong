@@ -40,6 +40,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btGuardarMarcador = new System.Windows.Forms.Button();
             this.txtResultadoj2 = new System.Windows.Forms.TextBox();
+            this.listJugadores = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // btGestionUsuario
@@ -146,11 +147,23 @@
             this.txtResultadoj2.Size = new System.Drawing.Size(44, 20);
             this.txtResultadoj2.TabIndex = 11;
             // 
+            // listJugadores
+            // 
+            this.listJugadores.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.listJugadores.Location = new System.Drawing.Point(0, 238);
+            this.listJugadores.MultiSelect = false;
+            this.listJugadores.Name = "listJugadores";
+            this.listJugadores.Size = new System.Drawing.Size(1127, 379);
+            this.listJugadores.TabIndex = 12;
+            this.listJugadores.UseCompatibleStateImageBehavior = false;
+            this.listJugadores.View = System.Windows.Forms.View.List;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1127, 617);
+            this.Controls.Add(this.listJugadores);
             this.Controls.Add(this.txtResultadoj2);
             this.Controls.Add(this.btGuardarMarcador);
             this.Controls.Add(this.label3);
@@ -185,6 +198,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btGuardarMarcador;
         private System.Windows.Forms.TextBox txtResultadoj2;
+        private System.Windows.Forms.ListView listJugadores;
     }
 }
 
