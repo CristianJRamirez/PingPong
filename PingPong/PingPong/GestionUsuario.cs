@@ -32,17 +32,6 @@ namespace PingPong
             {
                 Jugador jug = (Jugador)listJugador.SelectedItems[0].Tag;
 
-               
-
-
-                /* if (!string.IsNullOrEmpty(txtNombre.Text))
-                 {
-                     jugadores.Find(x => x.nombre == jug.nombre && x.puntos == jug.puntos).nombre=txtNombre.Text;
-                 }
-                 if (!string.IsNullOrEmpty(txtPuntos.Text))
-                 {
-                     jugadores.Find(x => x.nombre == jug.nombre && x.puntos == jug.puntos).puntos = txtPuntos.Text;
-                 }*/
                 Jugador j= new Jugador(txtNombre.Text, txtPuntos.Text);
                 jugadores.Add(j);
 
@@ -96,9 +85,10 @@ namespace PingPong
             }
             txtNombre.Text = string.Empty;
             txtPuntos.Text = string.Empty;
-            //TODO subir version al fireBase
+            
             listJugador.Items.Add(jug.ToString());
 
+            //TODO subir version al fireBase
         }
 
         private void btEliminarUsuario_Click(object sender, EventArgs e)
