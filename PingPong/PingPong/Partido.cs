@@ -13,6 +13,7 @@ namespace PingPong
         public Jugador j2 { get; set; }
         public int marcadorJ1 {get;set;}
         public int marcadorJ2 { get; set; }
+        public bool done { get; set; }
 
 
         public Partido(Jugador juno,Jugador jdos)
@@ -35,16 +36,21 @@ namespace PingPong
             {
                 j2.puntos = j2.puntos + 3;
             }
-            
+            done = true;
         }
 
 
 
         public Boolean getFinishGame()
         {
-            return ((marcadorJ1 != null) && (marcadorJ2 != null)) ? true :false;
+            return done;
         }
 
-        
+
+        public override string ToString()
+        {
+            return "Partido -> " + j1.nombre + " - " + j2.nombre;
+        }
+
     }
 }

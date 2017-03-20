@@ -22,7 +22,7 @@ namespace PingPong
         Boolean partidosImpares = false;
         int totalPartidos = 0;
 
-        List<Partido> calendario = new List<Partido>();
+        public List<Partido> calendario = new List<Partido>();
 
         public Liga() { }
 
@@ -53,7 +53,7 @@ namespace PingPong
         ///<summary> Calculo de los partidos que tendra la liga </summary> 
         public void getNumMatches()
         {
-            int auxT = jugadores.Count();
+            auxT = jugadores.Count();
             Boolean impar = (auxT % 2 != 0);
             if (impar)
             {

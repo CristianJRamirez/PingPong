@@ -42,7 +42,15 @@ namespace PingPong
 
         private void btIniciarCompe_Click(object sender, EventArgs e)
         {
-            liga = new Liga();
+            liga = new Liga(jugadores);
+
+            foreach (Partido p in liga.calendario)
+            {
+                listCalendario.Items.Add(p.ToString());
+            }
+            
+
+
 
 
 

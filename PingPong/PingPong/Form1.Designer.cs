@@ -41,6 +41,12 @@
             this.btGuardarMarcador = new System.Windows.Forms.Button();
             this.txtResultadoj2 = new System.Windows.Forms.TextBox();
             this.listJugadores = new System.Windows.Forms.ListView();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.listCalendario = new System.Windows.Forms.ListView();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btGestionUsuario
@@ -149,21 +155,49 @@
             // 
             // listJugadores
             // 
-            this.listJugadores.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.listJugadores.Location = new System.Drawing.Point(0, 238);
+            this.listJugadores.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listJugadores.Location = new System.Drawing.Point(0, 0);
             this.listJugadores.MultiSelect = false;
             this.listJugadores.Name = "listJugadores";
-            this.listJugadores.Size = new System.Drawing.Size(1127, 379);
+            this.listJugadores.Size = new System.Drawing.Size(551, 380);
             this.listJugadores.TabIndex = 12;
             this.listJugadores.UseCompatibleStateImageBehavior = false;
             this.listJugadores.View = System.Windows.Forms.View.List;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 237);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.listJugadores);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.listCalendario);
+            this.splitContainer1.Size = new System.Drawing.Size(1127, 380);
+            this.splitContainer1.SplitterDistance = 551;
+            this.splitContainer1.TabIndex = 13;
+            // 
+            // listCalendario
+            // 
+            this.listCalendario.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listCalendario.Location = new System.Drawing.Point(0, 0);
+            this.listCalendario.MultiSelect = false;
+            this.listCalendario.Name = "listCalendario";
+            this.listCalendario.Size = new System.Drawing.Size(572, 380);
+            this.listCalendario.TabIndex = 0;
+            this.listCalendario.UseCompatibleStateImageBehavior = false;
+            this.listCalendario.View = System.Windows.Forms.View.List;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1127, 617);
-            this.Controls.Add(this.listJugadores);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.txtResultadoj2);
             this.Controls.Add(this.btGuardarMarcador);
             this.Controls.Add(this.label3);
@@ -179,6 +213,10 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,6 +237,8 @@
         private System.Windows.Forms.Button btGuardarMarcador;
         private System.Windows.Forms.TextBox txtResultadoj2;
         private System.Windows.Forms.ListView listJugadores;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ListView listCalendario;
     }
 }
 
