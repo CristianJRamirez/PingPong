@@ -50,6 +50,7 @@
             // 
             // btModificarUsuario
             // 
+            this.btModificarUsuario.Enabled = false;
             this.btModificarUsuario.Location = new System.Drawing.Point(203, 27);
             this.btModificarUsuario.Name = "btModificarUsuario";
             this.btModificarUsuario.Size = new System.Drawing.Size(113, 23);
@@ -60,6 +61,7 @@
             // 
             // btEliminarUsuario
             // 
+            this.btEliminarUsuario.Enabled = false;
             this.btEliminarUsuario.Location = new System.Drawing.Point(389, 27);
             this.btEliminarUsuario.Name = "btEliminarUsuario";
             this.btEliminarUsuario.Size = new System.Drawing.Size(114, 23);
@@ -74,6 +76,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(100, 20);
             this.txtNombre.TabIndex = 3;
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // txtPuntos
             // 
@@ -81,6 +84,7 @@
             this.txtPuntos.Name = "txtPuntos";
             this.txtPuntos.Size = new System.Drawing.Size(100, 20);
             this.txtPuntos.TabIndex = 4;
+            this.txtPuntos.TextChanged += new System.EventHandler(this.txtPuntos_TextChanged);
             // 
             // lblNombre
             // 
@@ -110,6 +114,8 @@
             this.listJugador.TabIndex = 7;
             this.listJugador.UseCompatibleStateImageBehavior = false;
             this.listJugador.View = System.Windows.Forms.View.List;
+            this.listJugador.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listJugador_ItemSelectionChanged);
+            this.listJugador.SelectedIndexChanged += new System.EventHandler(this.listJugador_SelectedIndexChanged);
             // 
             // GestionJugador
             // 

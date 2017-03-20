@@ -32,15 +32,27 @@ namespace PingPong
             {
                 Jugador jug = (Jugador)listJugador.SelectedItems[0].Tag;
 
-                if (!string.IsNullOrEmpty(txtNombre.Text))
-                {
-                    jugadores.Find(x => x.nombre == jug.nombre && x.puntos == jug.puntos).nombre=txtNombre.Text;
-                }
-                if (!string.IsNullOrEmpty(txtPuntos.Text))
-                {
-                    jugadores.Find(x => x.nombre == jug.nombre && x.puntos == jug.puntos).puntos = txtPuntos.Text;
-                }
+               
 
+
+                /* if (!string.IsNullOrEmpty(txtNombre.Text))
+                 {
+                     jugadores.Find(x => x.nombre == jug.nombre && x.puntos == jug.puntos).nombre=txtNombre.Text;
+                 }
+                 if (!string.IsNullOrEmpty(txtPuntos.Text))
+                 {
+                     jugadores.Find(x => x.nombre == jug.nombre && x.puntos == jug.puntos).puntos = txtPuntos.Text;
+                 }*/
+                Jugador j= new Jugador(txtNombre.Text, txtPuntos.Text);
+                jugadores.Add(j);
+
+                txtNombre.Text = string.Empty;
+                txtPuntos.Text = string.Empty;
+                //TODO subir version al fireBase
+                listJugador.Items.Add(j.ToString());
+
+                jugadores.Remove(jug);
+                listJugador.Items.Remove(listJugador.SelectedItems[0]);
             }
 
             //TODO subir version al fireBase
@@ -82,7 +94,8 @@ namespace PingPong
             {
                 MessageBox.Show("Pon un nombre al jugador!");
             }
-
+            txtNombre.Text = string.Empty;
+            txtPuntos.Text = string.Empty;
             //TODO subir version al fireBase
             listJugador.Items.Add(jug.ToString());
 
@@ -95,10 +108,65 @@ namespace PingPong
                 Jugador jug = (Jugador)listJugador.SelectedItems[0].Tag;
                 jugadores.Remove(jug);
 
+                listJugador.Items.Remove(listJugador.SelectedItems[0]);
+
                 //TODO borrar del Firebase
             }
         }
 
+        private void listJugador_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            if (listJugador.SelectedItems.Count > 0)
+            {
+                foreach (Jugador j in jugadores)
+                {
+                    if (listJugador.SelectedItems[0].Text == j.ToString())
+                    {
+                        txtNombre.Text = j.nombre;
+                        txtPuntos.Text = j.puntos;
+                    }
+                }
+            }
+            else
+            {
+                txtNombre.Text = string.Empty;
+                txtPuntos.Text = string.Empty;
+            }
+        }
 
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+            activarBoton();
+        }
+
+        private void txtPuntos_TextChanged(object sender, EventArgs e)
+        {
+            activarBoton();
+        }
+
+        private void activarBoton()
+        {
+            if (string.IsNullOrEmpty(txtNombre.Text) && string.IsNullOrEmpty(txtPuntos.Text) && listJugador.SelectedItems.Count<=0)
+            {
+                btModificarUsuario.Enabled = false;
+            }
+            else
+            {
+                btModificarUsuario.Enabled = true;
+            }
+
+        }
+
+        private void listJugador_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listJugador.SelectedItems.Count <= 0)
+            {
+                btEliminarUsuario.Enabled = false;
+            }
+            else
+            {
+                btEliminarUsuario.Enabled = true;
+            }
+        }
     }
 }
