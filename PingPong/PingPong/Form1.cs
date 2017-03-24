@@ -48,12 +48,21 @@ namespace PingPong
             {
                 listCalendario.Items.Add(p.ToString());
             }
-            
+
+
+            cargarTablaResultado();
 
 
 
+        }
 
+        private void cargarTablaResultado()
+        {
+            foreach (Jugador j in jugadores)
+            {
 
+                listResultado.Items.Add(j.nombre);
+            }
         }
 
         private void btPlayMatch_Click(object sender, EventArgs e)
@@ -63,6 +72,8 @@ namespace PingPong
             {
                 txtjugador1.Text = partActual.j1.nombre;
                 txtjugador2.Text = partActual.j2.nombre;
+                txtResultadoj1.Text = string.Empty;
+                txtResultadoj2.Text = string.Empty;
             }
         }
     
@@ -70,8 +81,96 @@ namespace PingPong
         {
             if (partActual != null)
             {
-                liga.setMarcador(int.Parse(txtResultadoj1.Text.Trim()), int.Parse(txtResultadoj2.Text.Trim()));
+                string quien = liga.setMarcador(int.Parse(txtResultadoj1.Text.Trim()), int.Parse(txtResultadoj2.Text.Trim()));
+
+                Jugador ganador = null;
+                Jugador perdedor = null;
+
+
+                ListViewItem itemGanador = null;
+                ListViewItem itemPerdedor = null;
+
+
+
+                if (partActual.j1.nombre.Equals(quien))
+                {
+                    itemGanador = buscarItem(partActual.j1.nombre);
+                    ganador = partActual.j1;
+                    itemPerdedor = buscarItem(partActual.j2.nombre);
+                    perdedor = partActual.j2;
+
+
+                }
+                else
+                {
+                    itemGanador = buscarItem(partActual.j2.nombre);
+                    ganador = partActual.j2;
+                    itemPerdedor = buscarItem(partActual.j1.nombre);
+                    perdedor = partActual.j1;
+                }
+
+
+                //itemGanador = buscarItem(quien);
+
+                listResultado.BeginUpdate();
+
+                //añadir datos de ganador
+                añadirDatosPartido(itemGanador, ganador.puntos);
+
+
+
+
+                //añadir datos de perdedor
+                añadirDatosPartido(itemPerdedor, perdedor.puntos);
+
+                
+                listResultado.EndUpdate();
+
+
+
+                //TODO ordenar la lista por los puntos
+
+                
+
             }
         }
+
+        private ListViewItem buscarItem(string quien)
+        {
+            ListViewItem item=null;
+            foreach (ListViewItem i in listResultado.Items)
+            {
+                if (i.Text.Equals(quien))
+                {
+                    item = i;
+                }
+            }
+
+            return item;
+        }
+
+        private void añadirDatosPartido(ListViewItem item,string puntos)
+        {
+            if (listResultado.Items[item.Index].SubItems.Count >= 2)
+            {
+                int jugados = int.Parse(listResultado.Items[item.Index].SubItems[1].Text);
+                listResultado.Items[item.Index].SubItems[1].Text = jugados + 1 + "";
+            }
+            else
+            {
+                listResultado.Items[item.Index].SubItems.Add("1");
+            }
+
+            if (listResultado.Items[item.Index].SubItems.Count >= 3)
+            {
+                int punt = int.Parse(listResultado.Items[item.Index].SubItems[2].Text);
+                listResultado.Items[item.Index].SubItems[2].Text =  puntos ;
+            }
+            else
+            {
+                listResultado.Items[item.Index].SubItems.Add(puntos);
+            }
+        }
+
     }
 }

@@ -42,11 +42,20 @@
             this.txtResultadoj2 = new System.Windows.Forms.TextBox();
             this.listJugadores = new System.Windows.Forms.ListView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.listCalendario = new System.Windows.Forms.ListView();
+            this.listResultado = new System.Windows.Forms.ListView();
+            this.Jugador = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PartidosJugados = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Puntos = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btGestionUsuario
@@ -159,7 +168,7 @@
             this.listJugadores.Location = new System.Drawing.Point(0, 0);
             this.listJugadores.MultiSelect = false;
             this.listJugadores.Name = "listJugadores";
-            this.listJugadores.Size = new System.Drawing.Size(551, 380);
+            this.listJugadores.Size = new System.Drawing.Size(327, 380);
             this.listJugadores.TabIndex = 12;
             this.listJugadores.UseCompatibleStateImageBehavior = false;
             this.listJugadores.View = System.Windows.Forms.View.List;
@@ -176,10 +185,27 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.listCalendario);
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(1127, 380);
-            this.splitContainer1.SplitterDistance = 551;
+            this.splitContainer1.SplitterDistance = 327;
             this.splitContainer1.TabIndex = 13;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.listCalendario);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.listResultado);
+            this.splitContainer2.Size = new System.Drawing.Size(796, 380);
+            this.splitContainer2.SplitterDistance = 264;
+            this.splitContainer2.TabIndex = 0;
             // 
             // listCalendario
             // 
@@ -187,10 +213,42 @@
             this.listCalendario.Location = new System.Drawing.Point(0, 0);
             this.listCalendario.MultiSelect = false;
             this.listCalendario.Name = "listCalendario";
-            this.listCalendario.Size = new System.Drawing.Size(572, 380);
+            this.listCalendario.Size = new System.Drawing.Size(264, 380);
             this.listCalendario.TabIndex = 0;
             this.listCalendario.UseCompatibleStateImageBehavior = false;
             this.listCalendario.View = System.Windows.Forms.View.List;
+            // 
+            // listResultado
+            // 
+            this.listResultado.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Jugador,
+            this.PartidosJugados,
+            this.Puntos});
+            this.listResultado.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listResultado.Location = new System.Drawing.Point(0, 0);
+            this.listResultado.Name = "listResultado";
+            this.listResultado.Size = new System.Drawing.Size(528, 380);
+            this.listResultado.TabIndex = 0;
+            this.listResultado.UseCompatibleStateImageBehavior = false;
+            this.listResultado.View = System.Windows.Forms.View.Details;
+            // 
+            // Jugador
+            // 
+            this.Jugador.Tag = "Jugador";
+            this.Jugador.Text = "Jugador";
+            this.Jugador.Width = 123;
+            // 
+            // PartidosJugados
+            // 
+            this.PartidosJugados.Tag = "PartidosJugados";
+            this.PartidosJugados.Text = "Partidos Jugados";
+            this.PartidosJugados.Width = 130;
+            // 
+            // Puntos
+            // 
+            this.Puntos.Tag = "Puntos";
+            this.Puntos.Text = "Puntos";
+            this.Puntos.Width = 103;
             // 
             // Form1
             // 
@@ -217,6 +275,10 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,6 +301,11 @@
         private System.Windows.Forms.ListView listJugadores;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ListView listCalendario;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.ListView listResultado;
+        private System.Windows.Forms.ColumnHeader Jugador;
+        private System.Windows.Forms.ColumnHeader PartidosJugados;
+        private System.Windows.Forms.ColumnHeader Puntos;
     }
 }
 

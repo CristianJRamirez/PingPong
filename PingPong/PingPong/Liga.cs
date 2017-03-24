@@ -112,7 +112,7 @@ namespace PingPong
         /// <summary> Assignacion de la primera vuelta de los partidos </summary>
         public void getPrimeraVuelta()
         {
-            MessageBox.Show("\n Primera ronda \n \n");
+            //MessageBox.Show("\n Primera ronda \n \n");
             for (int i = 0; i < totalPartidos; i++)
             {
                 if (local[i] != null)
@@ -127,7 +127,7 @@ namespace PingPong
         /// <summary> Assignacion de la segunda vuelta de los partidos </summary>
         public void getSegundaVuelta()
         {
-            MessageBox.Show("\n Segunda ronda \n \n");
+            //MessageBox.Show("\n Segunda ronda \n \n");
             for (int i = 0; i < totalPartidos; i++)
             {
                 if (local[i] != null)
@@ -158,9 +158,9 @@ namespace PingPong
         /// <summary> Indicamo el valor del marcador del partido actual </summary>
         /// <param name="uno"> marcador del </param>
         /// <param name="dos"></param>
-        public void setMarcador(int uno,int dos)
+        public string setMarcador(int uno,int dos)
         {
-            partActual.setMarcador(uno, dos);
+            return partActual.setMarcador(uno, dos);
         }
 
         ///////////////////////////////////////////////////////

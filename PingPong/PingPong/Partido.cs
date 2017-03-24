@@ -23,20 +23,26 @@ namespace PingPong
         }
 
 
-        public void setMarcador(int uno, int dos)
+        public string setMarcador(int uno, int dos)
         {
             marcadorJ1 = uno;
             marcadorJ2 = dos;
+            string quien = string.Empty;
 
             if (marcadorJ1>marcadorJ2)
             {
-                j1.puntos = j1.puntos + 3;
+                int puntos = int.Parse(j1.puntos) + 3;
+                j1.puntos =  +puntos + "";
+                quien = j1.nombre;
             }
             else
             {
-                j2.puntos = j2.puntos + 3;
+                int puntos = int.Parse(j2.puntos) + 3;
+                j2.puntos = puntos + "";
+                quien = j2.nombre;
             }
             done = true;
+            return quien;
         }
 
 
