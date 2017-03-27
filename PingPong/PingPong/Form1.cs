@@ -123,7 +123,7 @@ namespace PingPong
                     ganador = partActual.j1;
                     itemPerdedor = buscarItem(partActual.j2.nombre);
                     perdedor = partActual.j2;
-
+                    
 
                 }
                 else
@@ -134,7 +134,7 @@ namespace PingPong
                     perdedor = partActual.j1;
                 }
 
-
+                
                 //itemGanador = buscarItem(quien);
                 listResultado.BeginUpdate();
 
@@ -151,11 +151,11 @@ namespace PingPong
                 
                 listResultado.EndUpdate();
 
-
+                
 
                 //TODO ordenar la lista por los puntos
 
-                
+
 
             }
         }

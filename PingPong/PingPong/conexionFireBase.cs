@@ -65,5 +65,16 @@ namespace PingPong
             await child.DeleteAsync();
             //jugador.Id = p1.Key;
         }
+
+
+        //sin implementar, setear puntos de la liga actual para el jugador
+        public static async Task setPuntosJugadorFB(Jugador j)
+        {
+            var client = new FirebaseClient("https://ligapingpong-17f52.firebaseio.com/");
+            var child = client.Child("jugadors/"+j.ID);
+
+            var p1 = await child.PostAsync(jugador);
+            jugador.ID = p1.Key;
+        }
     }
 }
