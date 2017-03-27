@@ -22,15 +22,24 @@ namespace PingPong
 
         private void GestionJugador_Load(object sender, EventArgs e)
         {
-            //Cargar los datos del firebase
+            if (jugadores != null)
+            {
+                foreach (Jugador j in jugadores)
+                {
+                    listJugador.Items.Add(j.ToString());
+                }
+            }
+            
         }
 
         private void btModificarUsuario_Click(object sender, EventArgs e)
         {
             if (listJugador.SelectedItems.Count > 0)
             {
+                
 
                 Jugador j= new Jugador(txtNombre.Text, txtPuntos.Text);
+                setJugadorFirebase(j);
                 jugadores.Add(j);
 
                 txtNombre.Text = string.Empty;
@@ -53,11 +62,13 @@ namespace PingPong
                 if (jugadores != null)
                 {
                     jug = new Jugador(txtNombre.Text, txtPuntos.Text);
+                    setJugadorFirebase(jug);
                     jugadores.Add(jug);
                 }
                 else
                 {
                     jug = new Jugador(txtNombre.Text, txtPuntos.Text);
+                    setJugadorFirebase(jug);
                     jugadores = new List<Jugador>();
                     jugadores.Add(jug);
                 }
@@ -67,11 +78,13 @@ namespace PingPong
                 if (jugadores != null)
                 {
                     jug = new Jugador(txtNombre.Text, "0");
+                    setJugadorFirebase(jug);
                     jugadores.Add(jug);
                 }
                 else
                 {
                     jug = new Jugador(txtNombre.Text, "0");
+                    setJugadorFirebase(jug);
                     jugadores = new List<Jugador>();
                     jugadores.Add(jug);
                 }
@@ -85,7 +98,16 @@ namespace PingPong
             
             listJugador.Items.Add(jug.ToString());
 
+            
+
             //TODO subir version al fireBase
+        }
+
+        private async void setJugadorFirebase(Jugador jug)
+        {
+            conexionFireBase.jugador = jug;
+            await conexionFireBase.setJugadorFB();
+            jug = conexionFireBase.jugador;
         }
 
         private void btEliminarUsuario_Click(object sender, EventArgs e)
@@ -97,8 +119,6 @@ namespace PingPong
                 //TODO borrar del Firebase
             }
         }
-
-       
 
         private void listJugador_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
@@ -161,6 +181,7 @@ namespace PingPong
             {
                 if (listJugador.SelectedItems[0].Text == j.ToString())
                 {
+                    conexionFireBase.deleteJugadores(j);
                     jugadores.Remove(j);
                     listJugador.Items.Remove(listJugador.SelectedItems[0]);
                     return;

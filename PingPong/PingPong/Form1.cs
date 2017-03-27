@@ -12,7 +12,7 @@ namespace PingPong
 {
     public partial class Form1 : Form
     {
-        List<Jugador> jugadores = null;
+        List<Jugador> jugadores;
         Partido partActual;
         Liga liga = null;
 
@@ -26,10 +26,13 @@ namespace PingPong
             GestionJugador gu = new GestionJugador(jugadores);
             gu.ShowDialog();
             jugadores= gu.jugadores;
-
-            foreach (Jugador j in jugadores)
+            if (jugadores != null)
             {
-                listJugadores.Items.Add(j.ToString());
+                foreach (Jugador j in jugadores)
+                {
+                    listJugadores.Items.Add(j.ToString());
+                }
+                btIniciarCompe.Enabled = true;
             }
             
         }
@@ -37,7 +40,28 @@ namespace PingPong
         private void Form1_Load(object sender, EventArgs e)
         {
             //TODO buscar jugadores en el Firebase
+            //this.Cursor = AppStarting;
+            this.UseWaitCursor = true;
+            getJugadorFirebase();
 
+        }
+
+        private async void getJugadorFirebase()
+        {
+            await conexionFireBase.getJugadoresFB();
+            jugadores = conexionFireBase.players;
+            btGestionUsuario.Enabled = true;
+            this.UseWaitCursor = false;
+
+            if (jugadores != null)
+            {
+                foreach (Jugador j in jugadores)
+                {
+                    listJugadores.Items.Add(j.ToString());
+                }
+
+                btIniciarCompe.Enabled = true;
+            }
         }
 
         private void btIniciarCompe_Click(object sender, EventArgs e)
@@ -49,10 +73,11 @@ namespace PingPong
                 listCalendario.Items.Add(p.ToString());
             }
 
-
             cargarTablaResultado();
 
-
+            btCancelarLiga.Enabled = true;
+            btPlayMatch.Enabled = true;
+            btIniciarCompe.Enabled = false;
 
         }
 
@@ -60,7 +85,6 @@ namespace PingPong
         {
             foreach (Jugador j in jugadores)
             {
-
                 listResultado.Items.Add(j.nombre);
             }
         }
@@ -70,6 +94,7 @@ namespace PingPong
             partActual = liga.getNextMatch();
             if (partActual != null)
             {
+                btGuardarMarcador.Enabled = true;
                 txtjugador1.Text = partActual.j1.nombre;
                 txtjugador2.Text = partActual.j2.nombre;
                 txtResultadoj1.Text = string.Empty;
@@ -111,8 +136,8 @@ namespace PingPong
 
 
                 //itemGanador = buscarItem(quien);
-
                 listResultado.BeginUpdate();
+
 
                 //añadir datos de ganador
                 añadirDatosPartido(itemGanador, ganador.puntos);
@@ -172,5 +197,26 @@ namespace PingPong
             }
         }
 
+        private void btCancelarLiga_Click(object sender, EventArgs e)
+        {
+            if (liga !=null)
+            {
+                liga = null;
+                if (partActual!=null)
+                {
+                    partActual = null;
+                }
+                btIniciarCompe.Enabled = true;
+                btCancelarLiga.Enabled = false;
+                btPlayMatch.Enabled = false;
+                listCalendario.Clear();
+                listResultado.Clear();
+                btGuardarMarcador.Enabled = false;
+                txtjugador1.Text = string.Empty;
+                txtjugador2.Text = string.Empty;
+                txtResultadoj1.Text = string.Empty;
+                txtResultadoj2.Text = string.Empty;
+            }
+        }
     }
 }

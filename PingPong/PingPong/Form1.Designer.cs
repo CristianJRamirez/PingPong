@@ -60,6 +60,7 @@
             // 
             // btGestionUsuario
             // 
+            this.btGestionUsuario.Enabled = false;
             this.btGestionUsuario.Location = new System.Drawing.Point(28, 34);
             this.btGestionUsuario.Name = "btGestionUsuario";
             this.btGestionUsuario.Size = new System.Drawing.Size(109, 23);
@@ -70,6 +71,7 @@
             // 
             // btIniciarCompe
             // 
+            this.btIniciarCompe.Enabled = false;
             this.btIniciarCompe.Location = new System.Drawing.Point(208, 34);
             this.btIniciarCompe.Name = "btIniciarCompe";
             this.btIniciarCompe.Size = new System.Drawing.Size(144, 23);
@@ -80,15 +82,18 @@
             // 
             // btCancelarLiga
             // 
+            this.btCancelarLiga.Enabled = false;
             this.btCancelarLiga.Location = new System.Drawing.Point(358, 34);
             this.btCancelarLiga.Name = "btCancelarLiga";
             this.btCancelarLiga.Size = new System.Drawing.Size(122, 23);
             this.btCancelarLiga.TabIndex = 2;
             this.btCancelarLiga.Text = "Cancelar Liga";
             this.btCancelarLiga.UseVisualStyleBackColor = true;
+            this.btCancelarLiga.Click += new System.EventHandler(this.btCancelarLiga_Click);
             // 
             // btPlayMatch
             // 
+            this.btPlayMatch.Enabled = false;
             this.btPlayMatch.Location = new System.Drawing.Point(486, 34);
             this.btPlayMatch.Name = "btPlayMatch";
             this.btPlayMatch.Size = new System.Drawing.Size(143, 23);
@@ -147,6 +152,7 @@
             // 
             // btGuardarMarcador
             // 
+            this.btGuardarMarcador.Enabled = false;
             this.btGuardarMarcador.Location = new System.Drawing.Point(583, 112);
             this.btGuardarMarcador.Name = "btGuardarMarcador";
             this.btGuardarMarcador.Size = new System.Drawing.Size(117, 23);
@@ -268,6 +274,7 @@
             this.Controls.Add(this.btCancelarLiga);
             this.Controls.Add(this.btIniciarCompe);
             this.Controls.Add(this.btGestionUsuario);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

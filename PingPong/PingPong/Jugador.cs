@@ -8,6 +8,7 @@ namespace PingPong
 {
     public class Jugador
     {
+        public string ID { get; set; }
         public string nombre { get; set; }
         public string puntos { get; set; }
 
@@ -28,5 +29,6 @@ namespace PingPong
         {
             return "Jugador -> "+nombre +"["+puntos+"]";
         }
+
     }
 }

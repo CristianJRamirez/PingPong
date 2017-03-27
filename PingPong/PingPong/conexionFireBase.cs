@@ -9,23 +9,29 @@ namespace PingPong
 {
     public static class conexionFireBase
     {
-        //private Jugador jugador;
+        public static List<Jugador> players = null;
+        public static Jugador jugador = null;
 
         /// <summary> Agregar Jugador al Firebase  </summary>
         /// <returns></returns>
-        public static async Task setJugadorFB(Jugador jugador)
+        public static async Task setJugadorFB()
         {
+            if (jugador == null)
+            {
+                jugador = new Jugador();
+            }
+
             var client = new FirebaseClient("https://ligapingpong-17f52.firebaseio.com/");
             var child = client.Child("jugadors/");
 
             var p1 = await child.PostAsync(jugador);
-            //jugador.Id = p1.Key;
+            jugador.ID = p1.Key;
         }
 
         /// <summary> Devolver los jugadores en la BBDD </summary>
         /// <param name="players">En que lista se quieren los jugadores</param>
         /// <returns></returns>
-        public static async Task getJugadoresFB(List<Jugador> players)
+        public static async Task getJugadoresFB()
         {
             if (players ==null)
             {
@@ -49,6 +55,15 @@ namespace PingPong
             }
 
             //return players;
+        }
+
+        public static async Task deleteJugadores(Jugador j)
+        {
+            var client = new FirebaseClient("https://ligapingpong-17f52.firebaseio.com/");
+            var child = client.Child("jugadors/"+j.ID);
+
+            await child.DeleteAsync();
+            //jugador.Id = p1.Key;
         }
     }
 }
