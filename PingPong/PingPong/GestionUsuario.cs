@@ -44,13 +44,11 @@ namespace PingPong
 
                 txtNombre.Text = string.Empty;
                 txtPuntos.Text = string.Empty;
-                //TODO subir version al fireBase
                 listJugador.Items.Add(j.ToString());
 
                 borrarUsuario();
             }
-
-            //TODO subir version al fireBase
+            
         
         }
 
@@ -99,8 +97,7 @@ namespace PingPong
             listJugador.Items.Add(jug.ToString());
 
             
-
-            //TODO subir version al fireBase
+            
         }
 
         private async void setJugadorFirebase(Jugador jug)
@@ -115,8 +112,7 @@ namespace PingPong
             if (listJugador.SelectedItems.Count > 0)
             {
                 borrarUsuario();            
-
-                //TODO borrar del Firebase
+                
             }
         }
 

@@ -39,7 +39,6 @@ namespace PingPong
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //TODO buscar jugadores en el Firebase
             //this.Cursor = AppStarting;
             this.UseWaitCursor = true;
             getJugadorFirebase();
@@ -149,11 +148,11 @@ namespace PingPong
                 añadirDatosPartido(itemPerdedor, perdedor.puntos);
 
                 
+                
                 listResultado.EndUpdate();
 
                 
-
-                //TODO ordenar la lista por los puntos
+                
 
 
 
