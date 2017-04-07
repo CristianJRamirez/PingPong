@@ -76,5 +76,59 @@ namespace PingPong
             var p1 = await child.PostAsync(jugador);
             jugador.ID = p1.Key;
         }
+
+
+
+        public static Partido partido = null;
+        public static async Task setPartidoFB()
+        {
+            if (partido == null)
+            {
+                partido = new Partido();
+            }
+
+            var client = new FirebaseClient("https://ligapingpong-17f52.firebaseio.com/");
+            var child = client.Child("liga/partidos/");
+
+            var p1 = await child.PostAsync(partido);
+            jugador.ID = p1.Key;
+        }
+
+
+        public static List<Partido> calendario = null;
+        public static async Task getPartidosFB()
+        {
+            if (calendario == null)
+            {
+                calendario = new List<Partido>();
+            }
+
+            var firebase = new FirebaseClient("https://ligapingpong-17f52.firebaseio.com/");
+
+            var calen = await firebase.Child("liga/partidos/").OnceAsync<Partido>();
+
+
+            // string msg = "";
+
+            //List<Jugador> players = new List<Jugador>();
+
+            foreach (var p1 in calen)
+            {
+                Partido j = p1.Object;
+                calendario.Add(j);
+                // msg += j.Nombre + "\n";
+            }
+
+            //return players;
+        }
+
+        public static async Task deletePartido(Partido p)
+        {
+            var client = new FirebaseClient("https://ligapingpong-17f52.firebaseio.com/");
+            var child = client.Child("liga/partidos/" + p.ID);
+
+            await child.DeleteAsync();
+        }
+
     }
 }

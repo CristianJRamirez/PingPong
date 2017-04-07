@@ -78,6 +78,16 @@ namespace PingPong
             btPlayMatch.Enabled = true;
             btIniciarCompe.Enabled = false;
 
+            actualizarBBDD();
+
+        }
+
+        private void actualizarBBDD()
+        {
+            foreach (Partido p in liga.calendario)
+            {
+                setPartidoFirebase(p);
+            }
         }
 
         private void cargarTablaResultado()
@@ -100,7 +110,14 @@ namespace PingPong
                 txtResultadoj2.Text = string.Empty;
             }
         }
-    
+        private async void setPartidoFirebase(Partido p)
+        {
+            conexionFireBase.partido = p;
+            await conexionFireBase.setPartidoFB();
+            p = conexionFireBase.partido;
+        }
+
+
         private void btGuardarMarcador_Click(object sender, EventArgs e)
         {
             if (partActual != null)
@@ -114,7 +131,8 @@ namespace PingPong
                 ListViewItem itemGanador = null;
                 ListViewItem itemPerdedor = null;
 
-
+                setPartidoFirebase(new Partido(partActual.ID, partActual.j1, partActual.j2, partActual.marcadorJ1, partActual.marcadorJ2, true));
+                borrarPartido(partActual);
 
                 if (partActual.j1.nombre.Equals(quien))
                 {
@@ -216,6 +234,12 @@ namespace PingPong
                 txtResultadoj1.Text = string.Empty;
                 txtResultadoj2.Text = string.Empty;
             }
+        }
+
+
+        private async void borrarPartido(Partido p)
+        {
+            await conexionFireBase.deletePartido(p);
         }
     }
 }

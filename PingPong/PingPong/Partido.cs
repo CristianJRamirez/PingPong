@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace PingPong
 {
-    class Partido
+    public class Partido
     {
-        
+        public string ID { get; set; }
         public Jugador j1 { get; set; }
         public Jugador j2 { get; set; }
         public int marcadorJ1 {get;set;}
@@ -16,10 +16,23 @@ namespace PingPong
         public bool done { get; set; }
 
 
+        public Partido()
+        {
+        }
+
         public Partido(Jugador juno,Jugador jdos)
         {
             j1 = juno;
             j2 = jdos;
+        }
+        public Partido(string id,Jugador juno, Jugador jdos,int marc1, int marc2,bool don)
+        {
+            ID = id;
+            j1 = juno;
+            j2 = jdos;
+            marcadorJ1 = marc1;
+            marcadorJ2 = marc2;
+            done=don;
         }
 
 
