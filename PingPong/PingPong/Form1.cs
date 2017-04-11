@@ -81,14 +81,29 @@ namespace PingPong
             actualizarBBDD();
 
         }
+        List<Partido> calenTemp = new List<Partido>();
 
-        private void actualizarBBDD()
+        private async void actualizarBBDD()
         {
+            
             foreach (Partido p in liga.calendario)
             {
-                setPartidoFirebase(p);
+                await setPartidoFirebase(p);
+                //calenTemp.Add(partidoTemp);
             }
+            liga.calendario = calenTemp;
         }
+
+
+        private async Task setPartidoFirebase(Partido p)
+        {
+            conexionFireBase.partido = p;
+            await conexionFireBase.setPartidoFB();
+            p = conexionFireBase.partido;
+
+            calenTemp.Add(conexionFireBase.partido);
+        }
+
 
         private void cargarTablaResultado()
         {
@@ -100,8 +115,9 @@ namespace PingPong
 
         private void btPlayMatch_Click(object sender, EventArgs e)
         {
+            
             partActual = liga.getNextMatch();
-            if (partActual != null)
+            if (partActual != null )
             {
                 btGuardarMarcador.Enabled = true;
                 txtjugador1.Text = partActual.j1.nombre;
@@ -110,12 +126,7 @@ namespace PingPong
                 txtResultadoj2.Text = string.Empty;
             }
         }
-        private async void setPartidoFirebase(Partido p)
-        {
-            conexionFireBase.partido = p;
-            await conexionFireBase.setPartidoFB();
-            p = conexionFireBase.partido;
-        }
+
 
 
         private void btGuardarMarcador_Click(object sender, EventArgs e)
@@ -123,7 +134,7 @@ namespace PingPong
             if (partActual != null)
             {
                 string quien = liga.setMarcador(int.Parse(txtResultadoj1.Text.Trim()), int.Parse(txtResultadoj2.Text.Trim()));
-
+                partActual = liga.partActual;
                 Jugador ganador = null;
                 Jugador perdedor = null;
 
@@ -241,5 +252,6 @@ namespace PingPong
         {
             await conexionFireBase.deletePartido(p);
         }
+
     }
 }

@@ -28,6 +28,9 @@ namespace PingPong
             jugador.ID = p1.Key;
         }
 
+
+
+
         /// <summary> Devolver los jugadores en la BBDD </summary>
         /// <param name="players">En que lista se quieren los jugadores</param>
         /// <returns></returns>
@@ -67,16 +70,6 @@ namespace PingPong
         }
 
 
-        //sin implementar, setear puntos de la liga actual para el jugador
-        public static async Task setPuntosJugadorFB(Jugador j)
-        {
-            var client = new FirebaseClient("https://ligapingpong-17f52.firebaseio.com/");
-            var child = client.Child("jugadors/"+j.ID);
-
-            var p1 = await child.PostAsync(jugador);
-            jugador.ID = p1.Key;
-        }
-
 
 
         public static Partido partido = null;
@@ -91,7 +84,8 @@ namespace PingPong
             var child = client.Child("liga/partidos/");
 
             var p1 = await child.PostAsync(partido);
-            jugador.ID = p1.Key;
+            partido.ID = p1.Key;
+ 
         }
 
 
@@ -129,6 +123,7 @@ namespace PingPong
 
             await child.DeleteAsync();
         }
+
 
     }
 }

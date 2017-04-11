@@ -14,7 +14,7 @@ namespace PingPong
 
         int encuentros = 0;
 
-        Partido partActual = null;
+        public Partido partActual = null;
         Jugador[] local = null;
         Jugador[] visita =null;
 
