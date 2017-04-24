@@ -253,5 +253,110 @@ namespace PingPong
             await conexionFireBase.deletePartido(p);
         }
 
+        private void btCargarLiga_Click(object sender, EventArgs e)
+        {
+            this.UseWaitCursor = true;
+            getLigaFB();
+        }
+
+
+        private async void getLigaFB()
+        {
+            await conexionFireBase.getPartidosFB();
+            if (liga==null)
+            {
+                liga = new Liga();
+            }
+            liga.calendario = conexionFireBase.calendario;
+
+            this.UseWaitCursor = false;
+
+            foreach (Partido p in liga.calendario)
+            {
+                listCalendario.Items.Add(p.ToString());
+            }
+
+
+            //cargarTablaResultado();
+
+            cargarJugadoresPuntos();
+
+        }
+        
+        public void cargarJugadoresPuntos()
+        {
+            List<Jugador> jugadoresCargar = new List<Jugador>();
+            foreach (Partido part in liga.calendario)
+            {
+                if (jugadoresCargar.Count==0)
+                {
+                    jugadoresCargar.Add(part.j1);
+                    jugadoresCargar.Add(part.j2);
+
+                }
+                else
+                {
+                    if (buscarJugador(jugadoresCargar,part.j1.nombre) == true)
+                    {
+                        if (int.Parse(jugadoresCargar.First(x => x.nombre.Equals(part.j1.nombre)).puntos) < int.Parse(part.j1.puntos))
+                        {
+                            jugadoresCargar.RemoveAll(x => x.nombre.Equals(part.j1.nombre));
+                            jugadoresCargar.Add(part.j1);
+                        }
+                    }
+                    else
+                    {
+                        jugadoresCargar.Add(part.j1);
+                    }
+
+                    
+                    if (buscarJugador(jugadoresCargar,part.j2.nombre) == true)
+                    {
+                        if (int.Parse(jugadoresCargar.First(x => x.nombre.Equals(part.j2.nombre)).puntos) < int.Parse(part.j2.puntos))
+                        {
+                            jugadoresCargar.RemoveAll(x => x.nombre.Equals(part.j2.nombre));
+                            jugadoresCargar.Add(part.j2);
+                        }
+                    }
+                    else
+                    {
+                        jugadoresCargar.Add(part.j2);
+                    }
+
+                }
+
+
+            }
+            cargarTablaResultadoJugadoresCargados(jugadoresCargar);
+  
+
+            foreach (Jugador item in jugadoresCargar)
+            {
+                ListViewItem item2 = buscarItem(item.nombre);
+                añadirDatosPartido(item2, item.puntos);
+            }
+            
+        }
+
+        private bool buscarJugador(List<Jugador> jugadoresCargar,string quien)
+        {
+            foreach (Jugador j in jugadoresCargar)
+            {
+                if (j.nombre.Equals(quien))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        private void cargarTablaResultadoJugadoresCargados(List<Jugador> jugadoresCargar )
+        {
+            foreach (Jugador j in jugadoresCargar)
+            {
+                listResultado.Items.Add(j.nombre);
+            }
+        }
     }
 }

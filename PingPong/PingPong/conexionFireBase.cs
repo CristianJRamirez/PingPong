@@ -12,6 +12,8 @@ namespace PingPong
         public static List<Jugador> players = null;
         public static Jugador jugador = null;
 
+        #region Jugadores
+
         /// <summary> Agregar Jugador al Firebase  </summary>
         /// <returns></returns>
         public static async Task setJugadorFB()
@@ -28,15 +30,12 @@ namespace PingPong
             jugador.ID = p1.Key;
         }
 
-
-
-
         /// <summary> Devolver los jugadores en la BBDD </summary>
         /// <param name="players">En que lista se quieren los jugadores</param>
         /// <returns></returns>
         public static async Task getJugadoresFB()
         {
-            if (players ==null)
+            if (players == null)
             {
                 players = new List<Jugador>();
             }
@@ -45,32 +44,37 @@ namespace PingPong
 
             var jugadores = await firebase.Child("jugadors").OnceAsync<Jugador>();
 
-
-           // string msg = "";
-
-            //List<Jugador> players = new List<Jugador>();
-
             foreach (var p1 in jugadores)
             {
                 Jugador j = p1.Object;
                 players.Add(j);
-               // msg += j.Nombre + "\n";
             }
 
-            //return players;
         }
 
         public static async Task deleteJugadores(Jugador j)
         {
             var client = new FirebaseClient("https://ligapingpong-17f52.firebaseio.com/");
-            var child = client.Child("jugadors/"+j.ID);
+            var child = client.Child("jugadors/" + j.ID);
 
             await child.DeleteAsync();
             //jugador.Id = p1.Key;
         }
 
 
+        //sin implementar, setear puntos de la liga actual para el jugador
+        public static async Task setPuntosJugadorFB(Jugador j)
+        {
+            var client = new FirebaseClient("https://ligapingpong-17f52.firebaseio.com/");
+            var child = client.Child("jugadors/" + j.ID);
 
+            var p1 = await child.PostAsync(jugador);
+            jugador.ID = p1.Key;
+        }
+
+        #endregion
+
+        #region Liga
 
         public static Partido partido = null;
         public static async Task setPartidoFB()
@@ -84,8 +88,7 @@ namespace PingPong
             var child = client.Child("liga/partidos/");
 
             var p1 = await child.PostAsync(partido);
-            partido.ID = p1.Key;
- 
+            jugador.ID = p1.Key;
         }
 
 
@@ -101,19 +104,12 @@ namespace PingPong
 
             var calen = await firebase.Child("liga/partidos/").OnceAsync<Partido>();
 
-
-            // string msg = "";
-
-            //List<Jugador> players = new List<Jugador>();
-
             foreach (var p1 in calen)
             {
                 Partido j = p1.Object;
                 calendario.Add(j);
-                // msg += j.Nombre + "\n";
             }
 
-            //return players;
         }
 
         public static async Task deletePartido(Partido p)
@@ -124,6 +120,7 @@ namespace PingPong
             await child.DeleteAsync();
         }
 
+        #endregion
 
     }
 }

@@ -48,6 +48,7 @@
             this.Jugador = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PartidosJugados = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Puntos = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btCargarLiga = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -83,7 +84,7 @@
             // btCancelarLiga
             // 
             this.btCancelarLiga.Enabled = false;
-            this.btCancelarLiga.Location = new System.Drawing.Point(358, 34);
+            this.btCancelarLiga.Location = new System.Drawing.Point(525, 34);
             this.btCancelarLiga.Name = "btCancelarLiga";
             this.btCancelarLiga.Size = new System.Drawing.Size(122, 23);
             this.btCancelarLiga.TabIndex = 2;
@@ -94,7 +95,7 @@
             // btPlayMatch
             // 
             this.btPlayMatch.Enabled = false;
-            this.btPlayMatch.Location = new System.Drawing.Point(486, 34);
+            this.btPlayMatch.Location = new System.Drawing.Point(583, 83);
             this.btPlayMatch.Name = "btPlayMatch";
             this.btPlayMatch.Size = new System.Drawing.Size(143, 23);
             this.btPlayMatch.TabIndex = 3;
@@ -256,11 +257,22 @@
             this.Puntos.Text = "Puntos";
             this.Puntos.Width = 103;
             // 
+            // btCargarLiga
+            // 
+            this.btCargarLiga.Location = new System.Drawing.Point(372, 34);
+            this.btCargarLiga.Name = "btCargarLiga";
+            this.btCargarLiga.Size = new System.Drawing.Size(131, 23);
+            this.btCargarLiga.TabIndex = 14;
+            this.btCargarLiga.Text = "Cargar Liga";
+            this.btCargarLiga.UseVisualStyleBackColor = true;
+            this.btCargarLiga.Click += new System.EventHandler(this.btCargarLiga_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1127, 617);
+            this.Controls.Add(this.btCargarLiga);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.txtResultadoj2);
             this.Controls.Add(this.btGuardarMarcador);
@@ -313,6 +325,7 @@
         private System.Windows.Forms.ColumnHeader Jugador;
         private System.Windows.Forms.ColumnHeader PartidosJugados;
         private System.Windows.Forms.ColumnHeader Puntos;
+        private System.Windows.Forms.Button btCargarLiga;
     }
 }
 
