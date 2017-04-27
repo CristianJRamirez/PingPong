@@ -46,9 +46,9 @@
             this.listCalendario = new System.Windows.Forms.ListView();
             this.listResultado = new System.Windows.Forms.ListView();
             this.Jugador = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PartidosJugados = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Puntos = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btCargarLiga = new System.Windows.Forms.Button();
+            this.btCancelarLigaBBDD = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -123,6 +123,7 @@
             // 
             // txtjugador1
             // 
+            this.txtjugador1.Enabled = false;
             this.txtjugador1.Location = new System.Drawing.Point(61, 115);
             this.txtjugador1.Name = "txtjugador1";
             this.txtjugador1.Size = new System.Drawing.Size(100, 20);
@@ -130,6 +131,7 @@
             // 
             // txtjugador2
             // 
+            this.txtjugador2.Enabled = false;
             this.txtjugador2.Location = new System.Drawing.Point(232, 115);
             this.txtjugador2.Name = "txtjugador2";
             this.txtjugador2.Size = new System.Drawing.Size(100, 20);
@@ -175,15 +177,17 @@
             this.listJugadores.Location = new System.Drawing.Point(0, 0);
             this.listJugadores.MultiSelect = false;
             this.listJugadores.Name = "listJugadores";
-            this.listJugadores.Size = new System.Drawing.Size(327, 380);
+            this.listJugadores.Size = new System.Drawing.Size(250, 386);
             this.listJugadores.TabIndex = 12;
             this.listJugadores.UseCompatibleStateImageBehavior = false;
             this.listJugadores.View = System.Windows.Forms.View.List;
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 237);
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(0, 155);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -193,8 +197,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1127, 380);
-            this.splitContainer1.SplitterDistance = 327;
+            this.splitContainer1.Size = new System.Drawing.Size(862, 386);
+            this.splitContainer1.SplitterDistance = 250;
             this.splitContainer1.TabIndex = 13;
             // 
             // splitContainer2
@@ -210,8 +214,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.listResultado);
-            this.splitContainer2.Size = new System.Drawing.Size(796, 380);
-            this.splitContainer2.SplitterDistance = 264;
+            this.splitContainer2.Size = new System.Drawing.Size(608, 386);
+            this.splitContainer2.SplitterDistance = 201;
             this.splitContainer2.TabIndex = 0;
             // 
             // listCalendario
@@ -220,7 +224,7 @@
             this.listCalendario.Location = new System.Drawing.Point(0, 0);
             this.listCalendario.MultiSelect = false;
             this.listCalendario.Name = "listCalendario";
-            this.listCalendario.Size = new System.Drawing.Size(264, 380);
+            this.listCalendario.Size = new System.Drawing.Size(201, 386);
             this.listCalendario.TabIndex = 0;
             this.listCalendario.UseCompatibleStateImageBehavior = false;
             this.listCalendario.View = System.Windows.Forms.View.List;
@@ -229,12 +233,11 @@
             // 
             this.listResultado.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Jugador,
-            this.PartidosJugados,
             this.Puntos});
             this.listResultado.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listResultado.Location = new System.Drawing.Point(0, 0);
             this.listResultado.Name = "listResultado";
-            this.listResultado.Size = new System.Drawing.Size(528, 380);
+            this.listResultado.Size = new System.Drawing.Size(403, 386);
             this.listResultado.TabIndex = 0;
             this.listResultado.UseCompatibleStateImageBehavior = false;
             this.listResultado.View = System.Windows.Forms.View.Details;
@@ -244,12 +247,6 @@
             this.Jugador.Tag = "Jugador";
             this.Jugador.Text = "Jugador";
             this.Jugador.Width = 123;
-            // 
-            // PartidosJugados
-            // 
-            this.PartidosJugados.Tag = "PartidosJugados";
-            this.PartidosJugados.Text = "Partidos Jugados";
-            this.PartidosJugados.Width = 130;
             // 
             // Puntos
             // 
@@ -267,11 +264,22 @@
             this.btCargarLiga.UseVisualStyleBackColor = true;
             this.btCargarLiga.Click += new System.EventHandler(this.btCargarLiga_Click);
             // 
+            // btCancelarLigaBBDD
+            // 
+            this.btCancelarLigaBBDD.Location = new System.Drawing.Point(665, 34);
+            this.btCancelarLigaBBDD.Name = "btCancelarLigaBBDD";
+            this.btCancelarLigaBBDD.Size = new System.Drawing.Size(155, 23);
+            this.btCancelarLigaBBDD.TabIndex = 15;
+            this.btCancelarLigaBBDD.Text = "Cancelar Liga de BBDD";
+            this.btCancelarLigaBBDD.UseVisualStyleBackColor = true;
+            this.btCancelarLigaBBDD.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1127, 617);
+            this.ClientSize = new System.Drawing.Size(863, 541);
+            this.Controls.Add(this.btCancelarLigaBBDD);
             this.Controls.Add(this.btCargarLiga);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.txtResultadoj2);
@@ -287,6 +295,7 @@
             this.Controls.Add(this.btIniciarCompe);
             this.Controls.Add(this.btGestionUsuario);
             this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.MinimumSize = new System.Drawing.Size(879, 580);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -323,9 +332,9 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.ListView listResultado;
         private System.Windows.Forms.ColumnHeader Jugador;
-        private System.Windows.Forms.ColumnHeader PartidosJugados;
         private System.Windows.Forms.ColumnHeader Puntos;
         private System.Windows.Forms.Button btCargarLiga;
+        private System.Windows.Forms.Button btCancelarLigaBBDD;
     }
 }
 

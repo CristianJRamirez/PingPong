@@ -15,6 +15,7 @@ namespace PingPong
         List<Jugador> jugadores;
         Partido partActual;
         Liga liga = null;
+        List<Jugador> jugadoresCargar;
 
         public Form1()
         {
@@ -65,6 +66,8 @@ namespace PingPong
 
         private void btIniciarCompe_Click(object sender, EventArgs e)
         {
+            borrarLigaFB();
+
             liga = new Liga(jugadores);
 
             foreach (Partido p in liga.calendario)
@@ -77,10 +80,19 @@ namespace PingPong
             btCancelarLiga.Enabled = true;
             btPlayMatch.Enabled = true;
             btIniciarCompe.Enabled = false;
+            btCancelarLigaBBDD.Enabled = false;
+            btGestionUsuario.Enabled = false;
 
             actualizarBBDD();
 
         }
+
+        private async Task borrarLigaFB()
+        {
+            conexionFireBase.deleteLiga();
+            
+        }
+
         List<Partido> calenTemp = new List<Partido>();
 
         private async void actualizarBBDD()
@@ -115,6 +127,23 @@ namespace PingPong
 
         private void btPlayMatch_Click(object sender, EventArgs e)
         {
+            if (jugadoresCargar!=null)
+            {
+                foreach (Jugador jCargar in jugadoresCargar)
+                {
+                    foreach (Partido part in liga.calendario)
+                    {
+                        if (jCargar.nombre.Equals(part.j1.nombre))
+                        {
+                            part.j1.puntos = jCargar.puntos;
+                        }
+                        else if (jCargar.nombre.Equals(part.j2.nombre))
+                        {
+                            part.j2.puntos = jCargar.puntos;
+                        }
+                    }
+                }
+            }
             
             partActual = liga.getNextMatch();
             if (partActual != null )
@@ -180,9 +209,9 @@ namespace PingPong
                 
                 listResultado.EndUpdate();
 
-                
-                
 
+
+                btPlayMatch_Click(sender, e);
 
 
             }
@@ -204,7 +233,7 @@ namespace PingPong
 
         private void añadirDatosPartido(ListViewItem item,string puntos)
         {
-            if (listResultado.Items[item.Index].SubItems.Count >= 2)
+            /*if (listResultado.Items[item.Index].SubItems.Count >= 2)
             {
                 int jugados = int.Parse(listResultado.Items[item.Index].SubItems[1].Text);
                 listResultado.Items[item.Index].SubItems[1].Text = jugados + 1 + "";
@@ -212,7 +241,7 @@ namespace PingPong
             else
             {
                 listResultado.Items[item.Index].SubItems.Add("1");
-            }
+            }*/
 
             if (listResultado.Items[item.Index].SubItems.Count >= 3)
             {
@@ -245,6 +274,9 @@ namespace PingPong
                 txtResultadoj1.Text = string.Empty;
                 txtResultadoj2.Text = string.Empty;
             }
+
+            borrarLigaFB();
+           
         }
 
 
@@ -257,6 +289,13 @@ namespace PingPong
         {
             this.UseWaitCursor = true;
             getLigaFB();
+
+            btCancelarLiga.Enabled = true;
+            btPlayMatch.Enabled = true;
+            btIniciarCompe.Enabled = false;
+            btCancelarLigaBBDD.Enabled = false;
+            btGestionUsuario.Enabled = false;
+
         }
 
 
@@ -281,11 +320,15 @@ namespace PingPong
 
             cargarJugadoresPuntos();
 
+            borrarLigaFB();
+
+            actualizarBBDD();
+
         }
-        
+
         public void cargarJugadoresPuntos()
         {
-            List<Jugador> jugadoresCargar = new List<Jugador>();
+            jugadoresCargar = new List<Jugador>();
             foreach (Partido part in liga.calendario)
             {
                 if (jugadoresCargar.Count==0)
@@ -357,6 +400,11 @@ namespace PingPong
             {
                 listResultado.Items.Add(j.nombre);
             }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            borrarLigaFB();
         }
     }
 }

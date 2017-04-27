@@ -88,7 +88,7 @@ namespace PingPong
             var child = client.Child("liga/partidos/");
 
             var p1 = await child.PostAsync(partido);
-            jugador.ID = p1.Key;
+            partido.ID = p1.Key;
         }
 
 
@@ -116,6 +116,14 @@ namespace PingPong
         {
             var client = new FirebaseClient("https://ligapingpong-17f52.firebaseio.com/");
             var child = client.Child("liga/partidos/" + p.ID);
+
+            await child.DeleteAsync();
+        }
+
+        public static async Task deleteLiga()
+        {
+            var client = new FirebaseClient("https://ligapingpong-17f52.firebaseio.com/");
+            var child = client.Child("liga/partidos/" );
 
             await child.DeleteAsync();
         }
